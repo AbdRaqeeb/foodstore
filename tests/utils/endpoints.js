@@ -1,0 +1,15 @@
+export const REGISTER = '/api/v1/auth/register';
+export const LOGIN = '/api/v1/auth/login';
+export const LOGOUT = '/api/v1/auth/logout';
+export const FORGOT_PASSWORD = '/api/v1/auth/forgot-password';
+export const GET_ME = '/api/v1/auth/me';
+export const CONFIRM_EMAIL = '/api/v1/auth/confirm/email';
+export const UPDATE_USER = '/api/v1/auth/update';
+export const UPLOAD_PHOTO = '/api/v1/auth/upload/photo';
+export const UPDATE_PASSWORD = '/api/v1/auth/password';
+export const RESET_PASSWORD = '/api/v1/auth/resetpassword';
+export const CATEGORIES = '/api/v1/categories';
+export const PRODUCTS = '/api/v1/products';
+export const USERS = '/api/v1/users';
+export const REVIEWS = '/api/v1/reviews';
+export const ORDERS = '/api/v1/orders';

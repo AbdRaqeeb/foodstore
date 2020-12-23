@@ -1,0 +1,11 @@
+# .idea
+.idea/
+
+#node_modules
+node_modules/
+
+#.env
+.env
+
+# coverage: test coverage
+coverage/

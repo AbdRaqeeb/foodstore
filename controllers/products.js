@@ -13,7 +13,7 @@ import folders from "../helpers/folders.js";
  **/
 export const getProducts = asyncHandler(async (req, res, next) => {
     if (req.params.categoryId) {
-        const products = await Product.find({category: req.params.categoryId});
+        const products = await Product.find({category: req.params.categoryId}).populate('user category', 'name email phone');
 
         return res.status(200).json({
             success: true,
@@ -31,7 +31,7 @@ export const getProducts = asyncHandler(async (req, res, next) => {
  * @access  Public
  **/
 export const getTopProducts = asyncHandler(async (req, res, next) => {
-    const products = await Product.find({}).sort({ rating: -1 }).limit(10);
+    const products = await Product.find({}).sort({ rating: -1 }).limit(10).populate('user category', 'name email phone');
 
     res.status(200).json({
         success: true,
@@ -46,10 +46,7 @@ export const getTopProducts = asyncHandler(async (req, res, next) => {
  * @access  Public
  **/
 export const getProduct = asyncHandler(async (req, res, next) => {
-    const product = await Product.findById(req.params.id).populate({
-        path: 'Category',
-        select: 'name numProducts'
-    });
+    const product = await Product.findById(req.params.id).populate('user category', 'name email phone');
 
     if (!product) {
         return next(
@@ -91,9 +88,11 @@ export const addProduct = asyncHandler(async (req, res, next) => {
 
     const product = await Product.create(req.body);
 
+    const details = await getDetails(product._id);
+
     res.status(201).json({
         success: true,
-        data: product
+        data: details
     });
 });
 
@@ -130,14 +129,11 @@ export const updateProduct = asyncHandler(async (req, res, next) => {
 
     await product.save({validateBeforeSave: false});
 
-    product = await Product.findById(req.params.id).populate({
-        path: 'Category',
-        select: 'name numProducts'
-    });
+    const details = await getDetails(product._id);
 
     res.status(200).json({
         success: true,
-        data: product
+        data: details
     });
 });
 
@@ -162,3 +158,9 @@ export const deleteProduct = asyncHandler(async (req, res, next) => {
         data: {}
     });
 });
+
+const getDetails = async (id) => {
+    const details = await Product.findById(id).populate('category user', 'name email phone');
+
+    return details;
+};

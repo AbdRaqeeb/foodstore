@@ -27,8 +27,8 @@ router.route('/top').get(getTopProducts);
 router
     .route('/')
     .get(advancedResults(Product, {
-        path: 'category',
-        select: 'name numProducts'
+        path: 'category user',
+        select: 'name email phone numProducts'
     }), getProducts)
     .post(protect, authorize('admin'), addProduct);
 

@@ -11,7 +11,7 @@ import Category from "../models/Category.js";
 
 
 // import other route
-import productRouter from './products';
+import productRouter from './products.js';
 
 // re-route into other routes
 router.use('/:categoryId/products', productRouter);

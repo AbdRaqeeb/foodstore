@@ -64,7 +64,6 @@ const order = {
         {
             name: 'Test Product',
             qty: 1,
-            image: 'image.png',
             price: 200,
             product: '5fd85d9c9ffe45173c3e44dd'
         }
@@ -125,6 +124,13 @@ describe('Order Endpoint', () => {
             //set id to var
             id = response.body.data._id;
 
+            order.orderItems[0].product = {
+                _id: "5fd85d9c9ffe45173c3e44dd",
+                name: 'Test Product',
+                brand: 'Test Brand',
+                price: 400
+            };
+
             expect(response.status).toBe(201);
             expect(response.body).toMatchObject({success: true, data: order});
         });
@@ -154,9 +160,13 @@ describe('Order Endpoint', () => {
                 {
                     name: 'Test Product',
                     qty: 1,
-                    image: 'image.png',
                     price: 200,
-                    product: '5fd85d9c9ffe45173c3e44dd'
+                    product: {
+                        _id: "5fd85d9c9ffe45173c3e44dd",
+                        name: 'Test Product',
+                        brand: 'Test Brand',
+                        price: 400
+                    }
                 }
             ];
 

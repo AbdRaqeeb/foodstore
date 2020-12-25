@@ -29,6 +29,10 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    unit: {
+      type: String,
+      required: [true, 'Please add product unit (e.g 1kg, 12 pcs)']
+    },
     rating: {
         type: Number,
         required: true,

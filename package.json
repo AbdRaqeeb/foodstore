@@ -12,8 +12,6 @@
   "author": "Ajao AbdRaqeeb",
   "license": "ISC",
   "dependencies": {
-    "D": "^1.0.0",
-    "babel-jest": "^26.6.3",
     "bcryptjs": "^2.4.3",
     "cloudinary-simple-upload": "^1.1.0",
     "colors": "^1.4.0",

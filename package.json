@@ -7,7 +7,9 @@
   "scripts": {
     "test": "jest --watchAll --coverage --verbose",
     "start": "NODE_ENV=production node server/index.js",
-    "dev": "nodemon server/index.js"
+    "dev": "nodemon server/index.js",
+    "data:import": "node seeder.js -i",
+    "data:destroy": "node seeder.js -d"
   },
   "author": "Ajao AbdRaqeeb",
   "license": "ISC",

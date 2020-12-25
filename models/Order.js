@@ -49,7 +49,7 @@ const OrderSchema = new mongoose.Schema({
             transaction_date: {type: Date},
             status: {type: String},
             reference: {type: String},
-            domain: {type: Number},
+            domain: {type: String},
             gateway_response: {type: String},
             message: {type: String},
             channel: {type: String},

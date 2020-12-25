@@ -18,7 +18,7 @@ export const getOrders = asyncHandler(async (req, res, next) => {
  * @access  Private
  **/
 export const getOrder = asyncHandler(async (req, res, next) => {
-    const order = await Order.findById(req.params.id).populate('user', 'name email phone');
+    const order = await Order.findById(req.params.id).populate('user orderItems.product', 'name email phone brand price');
 
     if (!order) {
         return next(
@@ -46,7 +46,7 @@ export const getOrder = asyncHandler(async (req, res, next) => {
  * @access  Private
  **/
 export const myOrders = asyncHandler(async (req, res, next) => {
-    const orders = await Order.find({user: req.user.id});
+    const orders = await Order.find({user: req.user.id}).populate('orderItems.product', 'name brand price');
 
     res.status(200).json({
         success: true,
@@ -73,9 +73,11 @@ export const addOrder = asyncHandler(async (req, res, next) => {
 
     const order = await Order.create(req.body);
 
+    const details = await getDetails(order._id);
+
     res.status(201).json({
         success: true,
-        data: order
+        data: details
     });
 });
 
@@ -100,12 +102,12 @@ export const updateOrderToDelivered = asyncHandler(async (req, res, next) => {
 
     await order.save();
 
-    order = await Order.findById(req.params.id).populate('user', 'name email phone');
+    const details = await getDetails(order._id);
 
 
     res.status(200).json({
         success: true,
-        data: order
+        data: details
     });
 
 });
@@ -157,11 +159,11 @@ export const updateOrderToPaid = asyncHandler(async (req, res, next) => {
 
     await order.save();
 
-    order = await Order.findById(req.params.id).populate('user', 'name email phone');
+    const details = await getDetails(order._id);
 
     res.status(200).json({
         success: true,
-        data: order
+        data: details
     });
 });
 
@@ -188,11 +190,11 @@ export const updateOrderStatus = asyncHandler(async (req, res, next) => {
 
     await order.save();
 
-    order = await Order.findById(req.params.id).populate('user', 'name email phone');
+    const details = await getDetails(order._id);
 
     res.status(200).json({
         success: true,
-        data: order
+        data: details
     });
 });
 
@@ -224,3 +226,9 @@ export const deleteOrder = asyncHandler(async (req, res,next) => {
         data: {}
     });
 });
+
+const getDetails = async (id) => {
+    const details = await Order.findById(id).populate('user orderItems.product', 'name price brand email phone');
+
+    return details;
+};

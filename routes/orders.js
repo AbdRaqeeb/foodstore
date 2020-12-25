@@ -23,8 +23,8 @@ router.route('/user').get(protect, myOrders);
 router
     .route('/')
     .get(protect, authorize('admin'), advancedResults(Order, {
-        path: 'user',
-        select: 'name email phone'
+        path: 'user orderItems.product',
+        select: 'name email phone price brand'
     }), getOrders)
     .post(protect, addOrder);
 

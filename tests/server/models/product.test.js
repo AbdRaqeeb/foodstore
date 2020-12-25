@@ -14,7 +14,8 @@ const product = {
     brand: 'Test Brand',
     description: 'Test Product',
     price: 400,
-    cost: 500
+    cost: 500,
+    unit: '12 pcs'
 };
 
 const category = {

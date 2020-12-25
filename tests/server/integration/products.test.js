@@ -29,7 +29,8 @@ const product = {
     brand: 'Test Brand',
     description: 'Test Product',
     price: 400,
-    cost: 500
+    cost: 500,
+    unit: '12 pcs'
 };
 
 // variables
@@ -65,6 +66,7 @@ describe('Product Endpoint', () => {
                 .field('description', product.description)
                 .field('price', product.price)
                 .field('cost', product.cost)
+                .field('unit', product.unit)
                 .attach('images', file)
                 .attach('images', file)
                 .set('Authorization', `Bearer ${token}`);
@@ -89,6 +91,7 @@ describe('Product Endpoint', () => {
                 .field('description', product.description)
                 .field('price', product.price)
                 .field('cost', product.cost)
+                .field('unit', product.unit)
                 .attach('images', file)
                 .attach('images', file)
                 .set('Authorization', `Bearer ${token}`);
@@ -110,6 +113,7 @@ describe('Product Endpoint', () => {
                 .field('description', product.description)
                 .field('price', product.price)
                 .field('cost', product.cost)
+                .field('unit', product.unit)
                 .set('Authorization', `Bearer ${token}`);
             expect(response.status).toBe(400);
             expect(response.body).toMatchObject({

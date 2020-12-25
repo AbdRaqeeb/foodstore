@@ -54,6 +54,7 @@ const product = {
     description: 'Test Product',
     price: 400,
     cost: 500,
+    unit: "12 pcs",
     images: ['image.png'],
     user: "5fd85d9c9ffe45173c3e44e1",
     category: "5fd85d9c9ffe45173c3e44e2"

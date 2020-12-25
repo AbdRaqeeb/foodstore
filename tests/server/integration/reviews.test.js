@@ -35,6 +35,7 @@ const product = {
     price: 400,
     cost: 500,
     images: ['image.png'],
+    unit: '12 pcs',
     user: "5fd85d9c9ffe45173c3e44e1",
     category: "5fd85d9c9ffe45173c3e44e2"
 };

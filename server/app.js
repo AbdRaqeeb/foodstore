@@ -69,7 +69,7 @@ app.use(hpp());
 app.use(cors());
 
 // Set static folder
-// app.use(express.static('public'));
+app.use(express.static('public'));
 
 // Mount routers
 app.use('/api/v1/users', users);
